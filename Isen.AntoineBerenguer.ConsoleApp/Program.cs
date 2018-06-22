@@ -17,10 +17,14 @@ namespace Isen.AntoineBerenguer.ConsoleApp
             Console.WriteLine($"Node child1 equal to first child of root? {child1.Equals(root.Children[0])}"); // True
             Console.WriteLine($"Is child11 among child1's children? {child1.Children.Contains(child11)}"); // True
             Console.WriteLine($"Is child11's parent listed as child1? {child11.Parent.Equals(child1)}"); //True
-            Console.WriteLine($"Removal of child11 as child1's child.");
+            Console.WriteLine("Removal of child11 as child1's child through GUID");
             child1.RemoveChildNode(child11.Id);
             Console.WriteLine($"Is child11 still among child1's children? {child1.Children.Contains(child11)}"); // False
             Console.WriteLine($"Is child11 listed as not having a parent? {child11.Parent == null}"); //True
+            Console.WriteLine("Removal of child1 as root's child through node detection");
+            root.RemoveChildNode(child1);
+            Console.WriteLine($"Is child1 still among root's children? {root.Children.Contains(child1)}"); // False
+            Console.WriteLine($"Is child1 listed as not having a parent? {child1.Parent == null}"); //True
         }
     }
 }

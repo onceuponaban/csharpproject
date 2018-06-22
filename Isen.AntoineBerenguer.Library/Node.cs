@@ -101,5 +101,21 @@ namespace Isen.AntoineBerenguer.Library
                 }
             }
         }
+
+        public void RemoveChildNode(Node node)
+        {
+            // Iterate over the children list
+            for (int i = 0; i < this.Children.Count; i++)
+            {
+                // If the child is identical to the node provided
+                if (this.Children[i].Equals(node))
+                {
+                    // Remove the child's parent
+                    Children[i].Parent = null;
+                    // Remove the matching child in the list.
+                    Children.RemoveAt(i);
+                }
+            }
+        }
     }
 }

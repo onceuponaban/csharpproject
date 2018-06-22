@@ -44,5 +44,10 @@ namespace Isen.AntoineBerenguer.Library
         /// </summary>
         /// <param name="id"></param>
         void RemoveChildNode(Guid id);
+        /// <summary>
+        /// Removes the node equal to the one given as parameter, if there is one. Otherwise, do nothing.
+        /// </summary>
+        /// <param name="node"></param>
+        void RemoveChildNode(Node node);
     }
 }
