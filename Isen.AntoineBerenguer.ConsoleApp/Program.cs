@@ -26,6 +26,17 @@ namespace Isen.AntoineBerenguer.ConsoleApp
             Console.WriteLine($"Trying to find child11 through node detection");
             Console.WriteLine($"Is child11 somewhere inside root's tree? {root.FindTraversing(child11).Equals(child11)}"); //True
 
+            Library.Node child2 = new Library.Node(root, "This is the second child of root.");
+            Library.Node child3 = new Library.Node(root, "This is the third child of root.");
+
+            Library.Node child21 = new Library.Node(child2, "This is the first child of child2.");
+            Library.Node child22 = new Library.Node(child2, "This is the second child of child2.");
+
+            Library.Node child221 = new Library.Node(child22, "This is the first child of child22.");
+
+            Console.WriteLine($"Displaying root's tree:");
+            Console.WriteLine(root);
+
             Console.WriteLine("Removal of child11 as child1's child through GUID");
             child1.RemoveChildNode(child11.Id);
             Console.WriteLine($"Is child11 still among child1's children? {child1.Children.Contains(child11)}"); // False

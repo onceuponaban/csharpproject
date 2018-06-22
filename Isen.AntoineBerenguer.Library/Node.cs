@@ -158,6 +158,20 @@ namespace Isen.AntoineBerenguer.Library
             return null;
         }
 
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < Depth; i++)
+            {
+                sb.Append("|-");
+            }
+            sb.Append($"{Value} {{{Id}}}\n");
+            foreach (Node child in Children)
+            {
+                sb.Append(child.ToString());
+            }
+            return sb.ToString();
+        }
 
     }
 }
