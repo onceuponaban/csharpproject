@@ -14,6 +14,7 @@ namespace Isen.AntoineBerenguer.ConsoleApp
             Console.WriteLine($"Node child11 of guid {child11.Id} and of value \"{child11.Value}\" has a depth of {child11.Depth} and its parent has a guid of {child11.Parent.Id} and a value of \"{child11.Parent.Value}\".");
             Console.WriteLine($"Node root equal to parent of child1? {root.Equals(child1.Parent)}"); // True
             Console.WriteLine($"Node root equal to parent of child11? {root.Equals(child11.Parent)}"); // False
+            Console.WriteLine($"Node child1 equal to first child of root? {child1.Equals(root.Children[0])}"); // True
         }
     }
 }

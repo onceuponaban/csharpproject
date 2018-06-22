@@ -29,5 +29,10 @@ namespace Isen.AntoineBerenguer.Library
         /// The number of ancestors a node has. The root of a tree has a depth of 0.
         /// </summary>
         int Depth { get; }
+        /// <summary>
+        /// Add a child to a node's child list. If null is given, do nothing.
+        /// </summary>
+        /// <param name="child"></param>
+        void AddChildNode(Node child);
     }
 }

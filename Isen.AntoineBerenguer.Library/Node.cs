@@ -19,6 +19,10 @@ namespace Isen.AntoineBerenguer.Library
         public Node(Node parent, string value)
         {
             _parent = parent;
+            if(parent != null)
+            {
+                parent.AddChildNode(this);
+            }
             _children = new List<Node>();
             _value = value;
             _id = System.Guid.NewGuid();
@@ -61,6 +65,15 @@ namespace Isen.AntoineBerenguer.Library
         public bool Equals(Node other)
         {
             return this.Id.Equals(other.Id) && this.Value.Equals(other.Value);
+        }
+
+        public void AddChildNode(Node child)
+        {
+            if (child != null)
+            {
+                _children.Add(child);
+                child.Parent = this;
+            }
         }
     }
 }
