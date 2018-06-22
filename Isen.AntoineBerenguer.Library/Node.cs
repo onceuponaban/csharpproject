@@ -10,7 +10,7 @@ namespace Isen.AntoineBerenguer.Library
         private readonly Guid _id;
         private Node _parent;
         private List<Node> _children;
-        
+
         /// <summary>
         /// Main constructor for the node. Defines its parent and value, sets its children to an empty list and generates its GUID
         /// </summary>
@@ -20,7 +20,7 @@ namespace Isen.AntoineBerenguer.Library
         {
             _parent = parent;
             // We'll update the parent node if there is one
-            if(parent != null)
+            if (parent != null)
             {
                 parent.AddChildNode(this);
             }
@@ -89,10 +89,10 @@ namespace Isen.AntoineBerenguer.Library
         public void RemoveChildNode(Guid id)
         {
             // Iterate over the children list
-            for (int i = 0; i < this.Children.Count; i++)
+            for (int i = 0; i < Children.Count; i++)
             {
                 // If the GUID matches the one provided
-                if (this.Children[i].Id.Equals(id))
+                if (Children[i].Id.Equals(id))
                 {
                     // Remove the child's parent
                     Children[i].Parent = null;
@@ -105,10 +105,10 @@ namespace Isen.AntoineBerenguer.Library
         public void RemoveChildNode(Node node)
         {
             // Iterate over the children list
-            for (int i = 0; i < this.Children.Count; i++)
+            for (int i = 0; i < Children.Count; i++)
             {
                 // If the child is identical to the node provided
-                if (this.Children[i].Equals(node))
+                if (Children[i].Equals(node))
                 {
                     // Remove the child's parent
                     Children[i].Parent = null;
@@ -117,5 +117,47 @@ namespace Isen.AntoineBerenguer.Library
                 }
             }
         }
+
+        public Node FindTraversing(Guid id)
+        {
+            // If this is the node that matches the ID, return it
+            if (this.Id.Equals(id))
+            {
+                return this;
+            }
+            // else, iterate over its children until you find one that does
+            for (int i = 0; i < Children.Count; i++)
+            {
+                // if one of the children returns something that isn't null, return it
+                if (Children[i].FindTraversing(id) != null)
+                {
+                    return Children[i].FindTraversing(id);
+                }
+            }
+            // if nothing was found, return null
+            return null;
+        }
+
+        public Node FindTraversing(Node node)
+        {
+            // If this is the node that matches the parameter, return it
+            if (this.Equals(node))
+            {
+                return this;
+            }
+            // else, iterate over its children until you find one that does
+            for (int i = 0; i < Children.Count; i++)
+            {
+                // if one of the children returns something that isn't null, return it
+                if (Children[i].FindTraversing(node) != null)
+                {
+                    return Children[i].FindTraversing(node);
+                }
+            }
+            // if nothing was found, return null
+            return null;
+        }
+
+
     }
 }

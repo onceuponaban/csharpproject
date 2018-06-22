@@ -49,5 +49,18 @@ namespace Isen.AntoineBerenguer.Library
         /// </summary>
         /// <param name="node"></param>
         void RemoveChildNode(Node node);
+        /// <summary>
+        /// Return the node matching the provided GUID, or failing that null.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Node FindTraversing(Guid id);
+
+        /// <summary>
+        /// Return the node given as a parameter, or failing that null.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        Node FindTraversing(Node node);
     }
 }
