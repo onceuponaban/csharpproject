@@ -7,9 +7,9 @@ namespace Isen.AntoineBerenguer.ConsoleApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Library.Node root = new Library.Node(null, "I am Root.");
-            Library.Node child1 = new Library.Node(root, "This is the first child of root.");
-            Library.Node child11 = new Library.Node(child1, "This is the first child of child1.");
+            Library.Node<string>root = new Library.Node<string>(null, "I am Root.");
+            Library.Node<string>child1 = new Library.Node<string>(root, "This is the first child of root.");
+            Library.Node<string>child11 = new Library.Node<string>(child1, "This is the first child of child1.");
 
             Console.WriteLine($"Node child1 of guid {child1.Id} and of value \"{child1.Value}\" has a depth of {child1.Depth} and its parent has a guid of {child1.Parent.Id} and a value of \"{child1.Parent.Value}\".");
             Console.WriteLine($"Node child11 of guid {child11.Id} and of value \"{child11.Value}\" has a depth of {child11.Depth} and its parent has a guid of {child11.Parent.Id} and a value of \"{child11.Parent.Value}\".");
@@ -26,13 +26,13 @@ namespace Isen.AntoineBerenguer.ConsoleApp
             Console.WriteLine($"Trying to find child11 through node detection");
             Console.WriteLine($"Is child11 somewhere inside root's tree? {root.FindTraversing(child11).Equals(child11)}"); //True
 
-            Library.Node child2 = new Library.Node(root, "This is the second child of root.");
-            Library.Node child3 = new Library.Node(root, "This is the third child of root.");
+            Library.Node<string>child2 = new Library.Node<string>(root, "This is the second child of root.");
+            Library.Node<string>child3 = new Library.Node<string>(root, "This is the third child of root.");
 
-            Library.Node child21 = new Library.Node(child2, "This is the first child of child2.");
-            Library.Node child22 = new Library.Node(child2, "This is the second child of child2.");
+            Library.Node<string>child21 = new Library.Node<string>(child2, "This is the first child of child2.");
+            Library.Node<string>child22 = new Library.Node<string>(child2, "This is the second child of child2.");
 
-            Library.Node child221 = new Library.Node(child22, "This is the first child of child22.");
+            Library.Node<string>child221 = new Library.Node<string>(child22, "This is the first child of child22.");
 
             Console.WriteLine($"Displaying root's tree:");
             Console.WriteLine(root);

@@ -4,19 +4,19 @@ using System.Text;
 
 namespace Isen.AntoineBerenguer.Library
 {
-    public class Node : INode
+    public class Node<T> : INode<T>
     {
-        private string _value;
+        private T _value;
         private readonly Guid _id;
-        private Node _parent;
-        private List<Node> _children;
+        private Node<T> _parent;
+        private List<Node<T>> _children;
 
         /// <summary>
         /// Main constructor for the node. Defines its parent and value, sets its children to an empty list and generates its GUID
         /// </summary>
         /// <param name="parent"></param>
         /// <param name="value"></param>
-        public Node(Node parent, string value)
+        public Node(Node<T> parent, T value)
         {
             _parent = parent;
             // We'll update the parent node if there is one
@@ -24,7 +24,7 @@ namespace Isen.AntoineBerenguer.Library
             {
                 parent.AddChildNode(this);
             }
-            _children = new List<Node>();
+            _children = new List<Node<T>>();
             _value = value;
             _id = System.Guid.NewGuid();
         }
@@ -32,21 +32,21 @@ namespace Isen.AntoineBerenguer.Library
         /// Constructor to be used if you wish to set a node's parent but not its value.
         /// </summary>
         /// <param name="parent"></param>
-        public Node(Node parent) : this(parent, String.Empty) { }
+        public Node(Node<T> parent) : this(parent, default(T)) { }
         /// <summary>
         /// Constructor to be used if you wish to set a node's value but not its parent. Recommended for setting a root node.
         /// </summary>
         /// <param name="value"></param>
-        public Node(string value) : this(null, value) { }
+        public Node(T value) : this(null, value) { }
         /// <summary>
         /// Constructor to be used if you wish to neither set a node's parent nor value.
         /// </summary>
-        public Node() : this(null, String.Empty) { }
+        public Node() : this(null, default(T)) { }
 
-        public string Value { get => _value; set => _value = value; }
+        public T Value { get => _value; set => _value = value; }
         public Guid Id { get => _id; }
-        public Node Parent { get => _parent; set => _parent = value; }
-        public List<Node> Children { get => _children; set => _children = value; }
+        public Node<T> Parent { get => _parent; set => _parent = value; }
+        public List<Node<T>> Children { get => _children; set => _children = value; }
 
         public int Depth
         {
@@ -63,12 +63,12 @@ namespace Isen.AntoineBerenguer.Library
             }
         }
 
-        public bool Equals(Node other)
+        public bool Equals(Node<T> other)
         {
             return this.Id.Equals(other.Id) && this.Value.Equals(other.Value);
         }
 
-        public void AddChildNode(Node child)
+        public void AddChildNode(Node<T> child)
         {
             // We don't want to be trying to access child if it's null
             if (child != null)
@@ -78,9 +78,9 @@ namespace Isen.AntoineBerenguer.Library
             }
         }
 
-        public void AddNodes(IEnumerable<Node> nodeList)
+        public void AddNodes(IEnumerable<Node<T>> nodeList)
         {
-            foreach (Node child in nodeList)
+            foreach (Node<T> child in nodeList)
             {
                 this.AddChildNode(child);
             }
@@ -102,7 +102,7 @@ namespace Isen.AntoineBerenguer.Library
             }
         }
 
-        public void RemoveChildNode(Node node)
+        public void RemoveChildNode(Node<T> node)
         {
             // Iterate over the children list
             for (int i = 0; i < Children.Count; i++)
@@ -118,7 +118,7 @@ namespace Isen.AntoineBerenguer.Library
             }
         }
 
-        public Node FindTraversing(Guid id)
+        public Node<T> FindTraversing(Guid id)
         {
             // If this is the node that matches the ID, return it
             if (this.Id.Equals(id))
@@ -138,7 +138,7 @@ namespace Isen.AntoineBerenguer.Library
             return null;
         }
 
-        public Node FindTraversing(Node node)
+        public Node<T> FindTraversing(Node<T> node)
         {
             // If this is the node that matches the parameter, return it
             if (this.Equals(node))
@@ -166,7 +166,7 @@ namespace Isen.AntoineBerenguer.Library
                 sb.Append("|-");
             }
             sb.Append($"{Value} {{{Id}}}\n");
-            foreach (Node child in Children)
+            foreach (Node<T> child in Children)
             {
                 sb.Append(child.ToString());
             }
