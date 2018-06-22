@@ -10,7 +10,12 @@ namespace Isen.AntoineBerenguer.Library
         private readonly Guid _id;
         private Node _parent;
         private List<Node> _children;
-  
+        
+        /// <summary>
+        /// Main constructor for the node. Defines its parent and value, sets its children to an empty list and generates its GUID
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="value"></param>
         public Node(Node parent, string value)
         {
             _parent = parent;
@@ -18,11 +23,19 @@ namespace Isen.AntoineBerenguer.Library
             _value = value;
             _id = System.Guid.NewGuid();
         }
-
+        /// <summary>
+        /// Constructor to be used if you wish to set a node's parent but not its value.
+        /// </summary>
+        /// <param name="parent"></param>
         public Node(Node parent) : this(parent, String.Empty) { }
-
+        /// <summary>
+        /// Constructor to be used if you wish to set a node's value but not its parent. Recommended for setting a root node.
+        /// </summary>
+        /// <param name="value"></param>
         public Node(string value) : this(null, value) { }
-
+        /// <summary>
+        /// Constructor to be used if you wish to neither set a node's parent nor value.
+        /// </summary>
         public Node() : this(null, String.Empty) { }
 
         public string Value { get => _value; set => _value = value; }
