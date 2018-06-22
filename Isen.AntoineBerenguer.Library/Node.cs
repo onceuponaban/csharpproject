@@ -19,6 +19,7 @@ namespace Isen.AntoineBerenguer.Library
         public Node(Node parent, string value)
         {
             _parent = parent;
+            // We'll update the parent node if there is one
             if(parent != null)
             {
                 parent.AddChildNode(this);
@@ -69,10 +70,35 @@ namespace Isen.AntoineBerenguer.Library
 
         public void AddChildNode(Node child)
         {
+            // We don't want to be trying to access child if it's null
             if (child != null)
             {
                 _children.Add(child);
                 child.Parent = this;
+            }
+        }
+
+        public void AddNodes(IEnumerable<Node> nodeList)
+        {
+            foreach (Node child in nodeList)
+            {
+                this.AddChildNode(child);
+            }
+        }
+
+        public void RemoveChildNode(Guid id)
+        {
+            // Iterate over the children list
+            for (int i = 0; i < this.Children.Count; i++)
+            {
+                // If the GUID matches the one provided
+                if (this.Children[i].Id.Equals(id))
+                {
+                    // Remove the child's parent
+                    Children[i].Parent = null;
+                    // Remove the matching child in the list. Note: if for some reason there is more than one child matching this GUID, they will all get removed.
+                    Children.RemoveAt(i);
+                }
             }
         }
     }

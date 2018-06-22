@@ -34,5 +34,15 @@ namespace Isen.AntoineBerenguer.Library
         /// </summary>
         /// <param name="child"></param>
         void AddChildNode(Node child);
+        /// <summary>
+        /// Add a list of nodes as children
+        /// </summary>
+        /// <param name="nodeList"></param>
+        void AddNodes(IEnumerable<Node> nodeList);
+        /// <summary>
+        /// Removes the node bearing the same GUID as the one given as parameter, if there is one. Otherwise, do nothing.
+        /// </summary>
+        /// <param name="id"></param>
+        void RemoveChildNode(Guid id);
     }
 }
